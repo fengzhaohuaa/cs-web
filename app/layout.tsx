@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
+    {/*尝试更改主题配色*/}
     <html lang='zh' data-theme='light'>
       <body className={inter.className}>
         <Providers>{children}</Providers>
