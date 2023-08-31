@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { TfiAngleDoubleDown } from 'react-icons/tfi';
 import { FaChevronLeft, FaChevronRight, FaChevronDown } from 'react-icons/fa';
 
-const Slider = () => {
+const Slider = ({ images }) => {
   const [currentSlide, setCurrentSlide] = useState(0); // 当前轮播图索引
-  const images = ['./img/1.png', './img/2.png', './img/3.png']; // 轮播图片数组
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide === images.length - 1 ? 0 : prevSlide + 1)); // 切换到下一张轮播图
@@ -47,7 +46,7 @@ const Slider = () => {
       />
       {/* 当前轮播的图片 */}
       <div className='absolute bottom-4 right-4 flex space-x-2'>
-        {images.map((_, index: number) => (
+        {images.map((_, index) => (
           <div
             key={index}
             className={`h-3 w-3 rounded-full ${index === currentSlide ? 'bg-primary1' : 'bg-secondary1'}`}
