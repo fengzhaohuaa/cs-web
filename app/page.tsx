@@ -1,17 +1,26 @@
 'use client';
-{/*样式引入尝试*/}
+
 import { Image, Card, CardBody, CardFooter, CardHeader, Divider, Link } from '@nextui-org/react';
 import React from 'react';
+import { Button } from '@nextui-org/react';
 import Slider from '../components/Slider';
 import Footer from '../components/Footer';
 import NewsCard from '../components/NewsCard';
+const images = ['./img/1.png', './img/2.png', './img/3.png'];
 export default function Home() {
   return (
     <>
+      <Button
+        disableRipple
+        className="bg-background/30 relative overflow-visible rounded-full px-12 shadow-xl after:absolute after:inset-0 after:z-[-1] after:rounded-full after:bg-background/40 after:transition after:!duration-500 after:content-[''] hover:-translate-y-1 hover:after:scale-150 hover:after:opacity-0"
+        size='lg'
+      >
+        Press me
+      </Button>
       <div className='h-20'></div>
       <NewsCard />
       <div className='h-20'></div>
-      <Slider />
+      <Slider images={images} />
       <Footer />
       <div className='flex h-screen items-center justify-center'>
         <Card className='max-w-[400px]'>
