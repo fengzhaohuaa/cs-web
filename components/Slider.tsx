@@ -3,62 +3,70 @@ import { TfiAngleDoubleDown } from 'react-icons/tfi';
 import { FaChevronLeft, FaChevronRight, FaChevronDown } from 'react-icons/fa';
 
 // 类型限制
-interface SliderProps {
-  images: string[]; // 轮播图图片数组
-  title?: string; // 轮播图标题，可选
-  image: string; // 当前轮播图的图片
-  url?: string; // 轮播图链接地址，可选
+interface Slide {
+  image: string; // 图片路径
+  url?: string; // 链接地址（可选）
+  title?: string; // 标题（可选）
 }
 
-const Slider: React.FC<SliderProps> = ({ images, title, image, url }) => {
-  const [currentSlide, setCurrentSlide] = useState<number>(0); // 当前轮播图索引
+interface SliderProps {
+  slides: Slide[]; // 幻灯片数组
+}
+
+const Slider: React.FC<SliderProps> = ({ slides }) => {
+  const [currentSlide, setCurrentSlide] = useState<number>(0); // 当前幻灯片的索引
 
   const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide === images.length - 1 ? 0 : prevSlide + 1)); // 切换到下一张轮播图
+    // 显示下一张幻灯片
+    setCurrentSlide((prevSlide) => (prevSlide === slides.length - 1 ? 0 : prevSlide + 1));
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide === 0 ? images.length - 1 : prevSlide - 1)); // 切换到上一张轮播图
+    // 显示上一张幻灯片
+    setCurrentSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
   };
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index); // 切换到指定索引的轮播图
+    // 跳转到指定索引的幻灯片
+    setCurrentSlide(index);
   };
 
   useEffect(() => {
+    // 自动切换幻灯片
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000); // 每3秒切换一次轮播图
+    }, 3000);
 
     return () => {
-      clearInterval(interval); // 清除定时器
+      // 组件卸载时清除定时器
+      clearInterval(interval);
     };
   }, []);
 
   return (
     <div className='relative'>
+      {/*左点击按钮*/}
       <button className='absolute left-4 top-1/2 z-10 -translate-y-1/2 transform text-background1' onClick={prevSlide}>
-        <FaChevronLeft className='sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl' /> {/* 左箭头图标，大小为48像素 */}
+        <FaChevronLeft className='sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl' />
       </button>
+      {/*右点击按钮*/}
       <button
         className='absolute right-4 top-1/2 z-10 -translate-y-1/2 transform text-background1 sm:text-base md:text-lg lg:text-xl xl:text-2xl'
         onClick={nextSlide}
       >
         <FaChevronRight className='sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl' />
-        {/* 右箭头图标，大小为48像素 */}
       </button>
       <img
         className='sm:h-205 md:h-205 lg:h-496 w-full object-cover xl:h-screen'
-        src={images[currentSlide]}
-        alt={`Slide ${currentSlide + 1}`}
+        src={slides[currentSlide].image} // 当前幻灯片的图片路径
+        alt={`${slides[currentSlide].title} - Slide ${currentSlide + 1}`} // 当前幻灯片的标题
       />
-      {/* 当前轮播的图片 */}
       <div className='absolute bottom-4 right-4 flex space-x-2'>
-        {images.map((_, index) => (
+        {slides.map((slide, index) => (
           <div
             key={index}
             className={`h-3 w-3 rounded-full ${index === currentSlide ? 'bg-primary1' : 'bg-secondary1'}`}
-            onClick={() => goToSlide(index)} // 添加点击事件处理程序
+            onClick={() => goToSlide(index)} // 点击圆点跳转到对应索引的幻灯片
           ></div>
         ))}
       </div>
