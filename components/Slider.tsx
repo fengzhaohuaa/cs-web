@@ -2,8 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { TfiAngleDoubleDown } from 'react-icons/tfi';
 import { FaChevronLeft, FaChevronRight, FaChevronDown } from 'react-icons/fa';
 
-const Slider = ({ images }) => {
-  const [currentSlide, setCurrentSlide] = useState(0); // 当前轮播图索引
+// 类型限制
+interface SliderProps {
+  images: string[]; // 轮播图图片数组
+  title?: string; // 轮播图标题，可选
+  image: string; // 当前轮播图的图片
+  url?: string; // 轮播图链接地址，可选
+}
+
+const Slider: React.FC<SliderProps> = ({ images, title, image, url }) => {
+  const [currentSlide, setCurrentSlide] = useState<number>(0); // 当前轮播图索引
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide === images.length - 1 ? 0 : prevSlide + 1)); // 切换到下一张轮播图
@@ -13,7 +21,7 @@ const Slider = ({ images }) => {
     setCurrentSlide((prevSlide) => (prevSlide === 0 ? images.length - 1 : prevSlide - 1)); // 切换到上一张轮播图
   };
 
-  const goToSlide = (index) => {
+  const goToSlide = (index: number) => {
     setCurrentSlide(index); // 切换到指定索引的轮播图
   };
 
