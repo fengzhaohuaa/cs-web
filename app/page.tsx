@@ -2,19 +2,30 @@
 
 import { Image, Card, CardBody, CardFooter, CardHeader, Divider, Link } from '@nextui-org/react';
 import React from 'react';
-import { Button } from '@nextui-org/react';
 import Slider from '../components/Slider';
 import Footer from '../components/Footer';
-import NewsCard from '../components/NewsCard';
 //轮播图信息
-const images = ['./img/1.png', './img/2.png', './img/3.png'];
-const title = 'Slider Title';
-const image = './img/1.png';
-const url = 'https://example.com';
+const slides = [
+  {
+    image: './img/1.png',
+    url: 'https://example.com',
+    title: 'Slide 1',
+  },
+  {
+    image: './img/2.png',
+    url: 'https://example.com',
+    title: 'Slide 2',
+  },
+  {
+    image: './img/3.png',
+    url: 'https://example.com',
+    title: 'Slide 3',
+  },
+];
 export default function Home() {
   return (
     <>
-      <Slider images={images} title={title} image={image} url={url} />
+      <Slider slides={slides} />
       <Footer />
       <div className='flex h-screen items-center justify-center'>
         <Card className='max-w-[400px]'>
