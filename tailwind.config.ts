@@ -1,8 +1,5 @@
-import type { Config } from 'tailwindcss';
-
-import { nextui } from '@nextui-org/react';
-
-const config: Config = {
+const { nextui } = require('@nextui-org/react');
+module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -39,15 +36,9 @@ const config: Config = {
       ],
     },
     extend: {
-      colors: {
-        /*<alpha-value>可以调节透明度如bg-text/80,则将其透明度改为80%*/
-        /*主题的配色基于以下五种颜色，可改变其透明度进行变种*/
-        text1: 'rgb(var(--color-text) / <alpha-value>)', //字体色
-        background1: 'rgb(var(--color-background) / <alpha-value>)', //背景色
-        primary1: 'rgb(var(--color-primary) / <alpha-value>)', //主题色
-        secondary1: 'rgb(var(--color-secondary) / <alpha-value>)', //次要色
-        accent1: 'rgb(var(--color-accent) / <alpha-value>)', //提示色
-      },
+      //fix颜色通常用于主题改变时颜色也不会发生改变，如底部信息栏的文字以及背景色
+      fixwhite: '#fafafa',
+      fixblue: '#291F64',
       spacing: {
         4.5: '18px',
         5.5: '22px',
@@ -73,6 +64,32 @@ const config: Config = {
     },
   },
   darkMode: 'class',
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        //日间配色
+        light: {
+          layout: {},
+          colors: {
+            text: '#0C0725',
+            background: '#FDFDFD',
+            primary: '#291F64',
+            secondary: '#F3F2F6',
+            accent: '#7C0000',
+          },
+        },
+        //夜间配色
+        dark: {
+          layout: {},
+          colors: {
+            text: '#fafafa',
+            background: '#050505',
+            primary: '#291F64',
+            secondary: '#1e1a29',
+            accent: '#ff6666',
+          },
+        },
+      },
+    }),
+  ],
 };
-export default config;
