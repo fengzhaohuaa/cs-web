@@ -4,6 +4,9 @@ import { Image, Card, CardBody, CardFooter, CardHeader, Divider, Link } from '@n
 import React from 'react';
 import Slider from '../components/Slider';
 import Footer from '../components/Footer';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { ThemeSwitcher } from '../components/ThemeSwitch';
 //轮播图信息
 const slides = [
   {
@@ -27,6 +30,7 @@ export default function Home() {
     <>
       <Slider slides={slides} />
       <Footer />
+      <ThemeSwitcher />
       <div className='flex h-screen items-center justify-center'>
         <Card className='max-w-[400px]'>
           <CardHeader className='flex gap-3'>
@@ -44,16 +48,16 @@ export default function Home() {
           </CardHeader>
           <Divider />
           <CardBody>
-            <p className='text-text1'>Make beautiful websites regardless of your design experience.</p>
-            <p className='text-background1'>Make beautiful websites regardless of your design experience.</p>
-            <p className='text-primary1'>Make beautiful websites regardless of your design experience.</p>
-            <p className='text-secondary1'>Make beautiful websites regardless of your design experience.</p>
-            <p className='text-accent1'>Make beautiful websites regardless of your design experience.</p>
-            <button className='rounded bg-text1 px-4 py-2 font-bold text-background1'>text颜色</button>
-            <button className='rounded bg-background1 px-4 py-2 font-bold text-text1'>背景颜色</button>
-            <button className='rounded bg-primary1 px-4 py-2 font-bold text-background1'>主题颜色</button>
-            <button className='rounded bg-secondary1 px-4 py-2 font-bold text-text1'>次要颜色</button>
-            <button className='rounded bg-accent1 px-4 py-2 font-bold text-background1'>提示颜色</button>
+            <p className='text-text'>Make beautiful websites regardless of your design experience.</p>
+            <p className='text-background'>Make beautiful websites regardless of your design experience.</p>
+            <p className='text-primary'>Make beautiful websites regardless of your design experience.</p>
+            <p className='text-secondary'>Make beautiful websites regardless of your design experience.</p>
+            <p className='text-accent'>Make beautiful websites regardless of your design experience.</p>
+            <button className='rounded bg-text px-4 py-2 font-bold text-background'>text颜色</button>
+            <button className='rounded bg-background px-4 py-2 font-bold text-text'>背景颜色</button>
+            <button className='rounded bg-primary px-4 py-2 font-bold text-background'>主题颜色</button>
+            <button className='rounded bg-secondary px-4 py-2 font-bold text-text'>次要颜色</button>
+            <button className='rounded bg-accent px-4 py-2 font-bold text-background'>提示颜色</button>
           </CardBody>
           <Divider />
           <CardFooter>
