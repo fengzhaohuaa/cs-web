@@ -36,9 +36,11 @@ module.exports = {
       ],
     },
     extend: {
-      //fix颜色通常用于主题改变时颜色也不会发生改变，如底部信息栏的文字以及背景色
-      fixwhite: '#fafafa',
-      fixblue: '#291F64',
+      colors: {
+        //fix颜色通常用于主题改变时颜色也不会发生改变，如底部信息栏的文字以及背景色
+        fixwhite: '#fafafa',
+        fixblue: '#291F64',
+      },
       spacing: {
         4.5: '18px',
         5.5: '22px',
