@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 const Footer: React.FC = () => {
   const [isMediumScreen, setIsMediumScreen] = useState(false);
-  {/*响应式捕捉屏幕大小改变icon和图片*/}
+  {
+    /*响应式捕捉屏幕大小改变icon和图片*/
+  }
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 780px)');
     setIsMediumScreen(mediaQuery.matches);
@@ -19,7 +21,7 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className='bg-primary1 text-white'>
+    <footer className='text-fixwhite bg-primary'>
       {/*底部导航栏信息的外层盒子*/}
       <div className='container mx-auto  p-4 px-4 py-8'>
         {/*底部导航栏内部信息*/}
